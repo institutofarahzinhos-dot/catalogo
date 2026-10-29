@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Institucional - Instituto Farahzinhos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #004aad;
+            --dark: #172D7E;
+            --accent: #ec1f25;
+            --white: #ffffff;
+            --bg-viewer: #e5e7eb; /* Fundo simulando a mesa/leitor de PDF */
+        }
+
+        body {
+            background-color: var(--bg-viewer);
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            padding: 20px 0;
+            margin: 0;
+        }
+
+        h1, h2, h3, h4, .font-title {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Estilo da Página do Catálogo */
+        .page {
+            background-color: var(--white);
+            width: 100%;
+            max-width: 900px;
+            min-height: 1272px; /* Proporção aproximada de A4 (1:1.414) para 900px */
+            margin: 0 auto 40px auto;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 15px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Numerador de página */
+        .page-number {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            font-weight: 700;
+            color: #9ca3af;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .page-number.light { color: rgba(255,255,255,0.5); }
+
+        /* Elementos Decorativos */
+        .border-red-top { border-top: 8px solid var(--accent); }
+        .border-blue-left { border-left: 8px solid var(--primary); }
+
+        /* Responsividade para telas menores */
+        @media (max-width: 950px) {
+            .page {
+                max-width: 100%;
+                min-height: auto;
+                margin: 0 0 20px 0;
+                box-shadow: none;
+                border-bottom: 1px solid #ccc;
+            }
+            body { padding: 0; }
+        }
+
+        /* Comportamento de rolagem suave e animações */
+        html { scroll-behavior: smooth; }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .hover-scale { transition: transform 0.2s ease; }
+        .hover-scale:hover { transform: scale(1.05); }
+    </style>
+</head>
+<body>
+
+    <!-- Botão Global de Voltar (Invisível na Capa) -->
+    <button id="btn-voltar" onclick="voltarParaCapa()" style="display: none; position: fixed; top: 20px; left: 20px; z-index: 50;" class="bg-white border-2 border-[var(--primary)] text-[var(--primary)] px-4 py-2 rounded-full font-bold shadow-lg hover:bg-blue-50 transition-colors flex items-center gap-2 hover-scale">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+        Voltar à Capa
+    </button>
+
+    <!-- ==========================================
+         PÁGINA 1: CAPA
+    =========================================== -->
+    <div id="page-capa" class="page" style="background-color: var(--dark); color: var(--white);">
+        <div class="flex-1 flex flex-col justify-center items-center text-center p-12 md:p-20 relative">
+            <div class="z-10 w-full max-w-md mx-auto mb-12 relative">
+                <img src="CRIAÇÃO DE IDENTIDADE INSTITUTO.png" alt="Mascote Farahzinhos" class="w-full drop-shadow-2xl hover-scale">
+            </div>
+
+            <div class="z-10">
+                <h3 class="tracking-widest uppercase text-sm font-bold mb-4" style="color: var(--accent);">Catálogo Institucional 2026</h3>
+                <h1 class="font-title font-black text-6xl md:text-7xl leading-none mb-6">
+                    INSTITUTO<br>FARAHZINHOS
+                </h1>
+                <p class="text-xl max-w-md mx-auto text-gray-300 mb-8">
+                    Acolhimento, Esporte e Futuro.<br>Nossa missão em movimento.
+                </p>
+
+                <!-- Menu de Navegação Visual (Estilo Ícones) -->
+                <div class="bg-white rounded-3xl p-6 shadow-2xl flex flex-wrap justify-center gap-6 md:gap-10 w-full max-w-4xl mx-auto border border-gray-100 mt-8">
+                    
+                    <!-- Serviços -->
+                    <a href="#page-servicos" class="flex flex-col items-center gap-2 hover:-translate-y-1 transition-transform group">
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#dbeafe] border-4 border-white shadow-[0_0_0_2px_#e5e7eb] flex items-center justify-center group-hover:shadow-[0_0_0_2px_var(--primary)] transition-all">
+                            <img src="icon-serviço.jpg" alt="Serviços" class="w-8 h-8 md:w-10 md:h-10 mix-blend-multiply object-contain">
+                        </div>
+                        <span class="text-gray-800 font-bold text-xs md:text-sm">Serviços</span>
+                    </a>
+
+                    <!-- Localização -->
+                    <a href="#page-contato" class="flex flex-col items-center gap-2 hover:-translate-y-1 transition-transform group">
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#dbeafe] border-4 border-white shadow-[0_0_0_2px_#e5e7eb] flex items-center justify-center group-hover:shadow-[0_0_0_2px_var(--primary)] transition-all">
+                            <img src="icon-localização.jpg" alt="Localização" class="w-8 h-8 md:w-10 md:h-10 mix-blend-multiply object-contain">
+                        </div>
+                        <span class="text-gray-800 font-bold text-xs md:text-sm">Localização</span>
+                    </a>
+
+                    <!-- Horários -->
+                    <a href="#page-contato" class="flex flex-col items-center gap-2 hover:-translate-y-1 transition-transform group">
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#dbeafe] border-4 border-white shadow-[0_0_0_2px_#e5e7eb] flex items-center justify-center group-hover:shadow-[0_0_0_2px_var(--primary)] transition-all">
+                            <img src="icon-horario.jpg" alt="Horários" class="w-8 h-8 md:w-10 md:h-10 mix-blend-multiply object-contain">
+                        </div>
+                        <span class="text-gray-800 font-bold text-xs md:text-sm">Horários</span>
+                    </a>
+
+                    <!-- SITE -->
+                    <a href="https://instituto-farahzinho.com.br/" target="_blank" class="flex flex-col items-center gap-2 hover:-translate-y-1 transition-transform group" rel="noopener noreferrer">
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#dbeafe] border-4 border-white shadow-[0_0_0_2px_#e5e7eb] flex items-center justify-center group-hover:shadow-[0_0_0_2px_var(--primary)] transition-all">
+                            <img src="icon-site.jpg" alt="SITE" class="w-8 h-8 md:w-10 md:h-10 mix-blend-multiply object-contain">
+                        </div>
+                        <span class="text-gray-800 font-bold text-xs md:text-sm uppercase">SITE</span>
+                    </a>
+
+                    <!-- Depoimentos -->
+                    <a href="#page-impacto" class="flex flex-col items-center gap-2 hover:-translate-y-1 transition-transform group">
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#dbeafe] border-4 border-white shadow-[0_0_0_2px_#e5e7eb] flex items-center justify-center group-hover:shadow-[0_0_0_2px_var(--primary)] transition-all">
+                            <img src="icon-depoimento.jpg" alt="Depoimentos" class="w-8 h-8 md:w-10 md:h-10 mix-blend-multiply object-contain">
+                        </div>
+                        <span class="text-gray-800 font-bold text-xs md:text-sm">Depoimentos</span>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+        <div class="page-number light">01</div>
+    </div>
+
+    <!-- ==========================================
+         PÁGINA 2: ÍNDICE & HISTÓRIA
+    =========================================== -->
+    <div id="page-historia" class="page border-red-top p-12 md:p-16" style="display: none;">
+        <header class="flex justify-between items-center mb-16 border-b-2 pb-6 border-gray-100">
+            <h2 class="font-title font-black text-2xl" style="color: var(--dark);">NOSSA HISTÓRIA</h2>
+            <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
+                <img src="icon-site.jpg" alt="Logo Icon" class="w-6 h-6 mix-blend-multiply">
+            </div>
+        </header>
+
+        <div class="flex flex-col md:flex-row gap-16 flex-1">
+            <!-- Coluna Esquerda: Texto da História -->
+            <div class="flex-1">
+                <h3 class="font-title font-bold text-4xl mb-8 leading-tight" style="color: var(--primary);">
+                    Uma força de <span style="color: var(--accent);">transformação</span> filantrópica.
+                </h3>
+                <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                    Criado em 2019 pelo Vereador Pablo Farah, o Instituto Farahzinhos nasceu como uma força de transformação filantrópica.
+                </p>
+                <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                    Nosso principal objetivo é levar para as comunidades de Belém e Região Metropolitana, serviços totalmente gratuitos e de excelência.
+                </p>
+                
+                <div class="bg-blue-50 p-6 rounded-xl border-l-4" style="border-color: var(--primary);">
+                    <p class="text-md text-[var(--dark)] font-semibold mb-4">
+                        Trabalhamos incansavelmente realizando a inclusão social através de pilares fundamentais:
+                    </p>
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <li class="flex items-center gap-3 text-gray-700 font-bold">
+                            <span class="flex items-center justify-center w-6 h-6 rounded-full bg-[var(--accent)] text-white text-xs">✓</span> Saúde
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-700 font-bold">
+                            <span class="flex items-center justify-center w-6 h-6 rounded-full bg-[var(--accent)] text-white text-xs">✓</span> Cidadania
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-700 font-bold">
+                            <span class="flex items-center justify-center w-6 h-6 rounded-full bg-[var(--accent)] text-white text-xs">✓</span> Educação
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-700 font-bold">
+                            <span class="flex items-center justify-center w-6 h-6 rounded-full bg-[var(--accent)] text-white text-xs">✓</span> Esporte
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-700 font-bold">
+                            <span class="flex items-center justify-center w-6 h-6 rounded-full bg-[var(--accent)] text-white text-xs">✓</span> Jurídico
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-700 font-bold">
+                            <span class="flex items-center justify-center w-6 h-6 rounded-full bg-[var(--accent)] text-white text-xs">✓</span> Assist. Social
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Coluna Direita: Índice do Catálogo -->
+            <div class="w-full md:w-1/3 bg-gray-50 p-8 rounded-xl border border-gray-100 h-fit">
+                <h4 class="font-title font-bold text-xl mb-6" style="color: var(--dark);">Conteúdo</h4>
+                <ul class="space-y-4 font-medium text-gray-600">
+                    <li class="border-b border-gray-200 pb-2 hover:text-[var(--accent)] transition-colors">
+                        <a href="#page-historia" class="flex justify-between w-full"><span>Nossa História</span> <span style="color: var(--primary);">02</span></a>
+                    </li>
+                    <li class="border-b border-gray-200 pb-2 hover:text-[var(--accent)] transition-colors">
+                        <a href="#page-servicos" class="flex justify-between w-full"><span>Atenção Domiciliar</span> <span style="color: var(--primary);">03</span></a>
+                    </li>
+                    <li class="border-b border-gray-200 pb-2 hover:text-[var(--accent)] transition-colors">
+                        <a href="#page-servicos" class="flex justify-between w-full"><span>Formação Esportiva</span> <span style="color: var(--primary);">03</span></a>
+                    </li>
+                    <li class="border-b border-gray-200 pb-2 hover:text-[var(--accent)] transition-colors">
+                        <a href="#page-impacto" class="flex justify-between w-full"><span>Impacto (Depoimentos)</span> <span style="color: var(--primary);">04</span></a>
+                    </li>
+                    <li class="pb-2 hover:text-[var(--accent)] transition-colors">
+                        <a href="#page-contato" class="flex justify-between w-full"><span>Informações e Contato</span> <span style="color: var(--primary);">05</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="page-number">02</div>
+    </div>
+
+    <!-- ==========================================
+         PÁGINA 3: PORTFÓLIO DE PROJETOS (GRID)
+    =========================================== -->
+    <div id="page-servicos" class="page border-red-top p-12 md:p-16" style="display: none;">
+        <header class="mb-12">
+            <h2 class="font-title font-black text-4xl uppercase" style="color: var(--dark);">Catálogo de Serviços</h2>
+            <p class="text-gray-500 mt-2 text-lg">As frentes de atuação do nosso instituto.</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 flex-1">
+            
+            <!-- Item de Catálogo 1 -->
+            <div class="group border-2 border-gray-100 hover:border-[var(--primary)] transition-colors rounded-2xl p-6 flex flex-col h-full">
+                <div class="w-16 h-16 bg-blue-50 rounded-xl flex items-center justify-center mb-4">
+                    <img src="icon-serviço.jpg" alt="Consultas Psicológicas" class="w-10 h-10 object-contain">
+                </div>
+                <div class="mb-auto">
+                    <div class="text-xs font-bold uppercase tracking-widest mb-1" style="color: var(--accent);">Programa 01</div>
+                    <h3 class="font-title font-bold text-xl mb-2" style="color: var(--dark);">Consultas Psicológicas</h3>
+                    <p class="text-gray-600 text-sm">Apoio emocional e cuidado especializado com a saúde mental, garantindo acolhimento e bem-estar para toda a comunidade.</p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-semibold" style="color: var(--primary);">
+                    <span>Atendimento Especializado</span>
+                    <span>Gratuito</span>
+                </div>
+            </div>
+
+            <!-- Item de Catálogo 2 -->
+            <div class="group border-2 border-gray-100 hover:border-[var(--primary)] transition-colors rounded-2xl p-6 flex flex-col h-full">
+                <div class="w-16 h-16 bg-blue-50 rounded-xl flex items-center justify-center mb-4">
+                    <img src="icon-serviço.jpg" alt="Atendimento Jurídico" class="w-10 h-10 object-contain" style="filter: hue-rotate(45deg);">
+                </div>
+                <div class="mb-auto">
+                    <div class="text-xs font-bold uppercase tracking-widest mb-1" style="color: var(--accent);">Programa 02</div>
+                    <h3 class="font-title font-bold text-xl mb-2" style="color: var(--dark);">Atendimento Jurídico</h3>
+                    <p class="text-gray-600 text-sm">Orientação legal e assistência jurídica para garantir o acesso aos direitos fundamentais de forma clara e acessível.</p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-semibold" style="color: var(--primary);">
+                    <span>Orientação Legal</span>
+                    <span>Gratuito</span>
+                </div>
+            </div>
+
+            <!-- Item de Catálogo 3 -->
+            <div class="group border-2 border-gray-100 hover:border-[var(--primary)] transition-colors rounded-2xl p-6 flex flex-col h-full">
+                <div class="w-16 h-16 bg-blue-50 rounded-xl flex items-center justify-center mb-4">
+                    <img src="icon-serviço.jpg" alt="Eletrocardiograma" class="w-10 h-10 object-contain" style="filter: hue-rotate(90deg);">
+                </div>
+                <div class="mb-auto">
+                    <div class="text-xs font-bold uppercase tracking-widest mb-1" style="color: var(--accent);">Programa 03</div>
+                    <h3 class="font-title font-bold text-xl mb-2" style="color: var(--dark);">Eletrocardiograma</h3>
+                    <p class="text-gray-600 text-sm">Exames cardiológicos essenciais oferecidos de maneira ágil, priorizando a prevenção e a saúde do coração na nossa comunidade.</p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-semibold" style="color: var(--primary);">
+                    <span>Exame Cardiológico</span>
+                    <span>Gratuito</span>
+                </div>
+            </div>
+
+            <!-- Item de Catálogo 4 -->
+            <div class="group border-2 border-gray-100 hover:border-[var(--primary)] transition-colors rounded-2xl p-6 flex flex-col h-full">
+                <div class="w-16 h-16 bg-blue-50 rounded-xl flex items-center justify-center mb-4">
+                    <img src="icon-serviço.jpg" alt="Encaminhamento" class="w-10 h-10 object-contain" style="filter: hue-rotate(180deg);">
+                </div>
+                <div class="mb-auto">
+                    <div class="text-xs font-bold uppercase tracking-widest mb-1" style="color: var(--accent);">Programa 04</div>
+                    <h3 class="font-title font-bold text-xl mb-2" style="color: var(--dark);">Encaminhamento Médico</h3>
+                    <p class="text-gray-600 text-sm">Direcionamento rápido e organizado para consultas com médicos especialistas e realização de exames complexos.</p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-semibold" style="color: var(--primary);">
+                    <span>Consultas e Exames</span>
+                    <span>Gratuito</span>
+                </div>
+            </div>
+
+        </div>
+        <div class="page-number">03</div>
+    </div>
+
+    <!-- ==========================================
+         PÁGINA 4: IMPACTO E DEPOIMENTOS
+    =========================================== -->
+    <div id="page-impacto" class="page" style="background-color: var(--primary); display: none;">
+        <div class="p-12 md:p-16 text-white h-full flex flex-col">
+            <header class="mb-12">
+                <h2 class="font-title font-black text-4xl text-white">IMPACTO GERADO</h2>
+                <p class="text-blue-200 mt-2 text-lg">Histórias reais de quem vive o projeto.</p>
+            </header>
+
+            <div class="flex-1 flex flex-col justify-center gap-12 max-w-3xl mx-auto animate-fade-in-up">
+                <!-- Depoimento Destaque -->
+                <div class="relative bg-[var(--dark)] p-10 rounded-2xl shadow-2xl border-l-8 border-[var(--accent)] hover-scale">
+                    <div class="absolute -top-8 -left-6 opacity-30">
+                        <img src="icon-depoimento.jpg" alt="Aspas" class="w-20 h-20 mix-blend-screen">
+                    </div>
+                    <blockquote class="relative z-10">
+                        <p class="text-2xl md:text-3xl font-medium leading-snug mb-6 italic">
+                            "A presença do Instituto Farahzinhos não mudou apenas a rotina das crianças, mas trouxe dignidade de volta para as famílias através do cuidado."
+                        </p>
+                        <footer class="font-title font-bold text-lg text-[var(--accent)] flex items-center gap-3">
+                            <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-[var(--dark)]">MJ</div>
+                            — Maria José, Moradora de Belém
+                        </footer>
+                    </blockquote>
+                </div>
+
+                <!-- Box de Incentivo ao Instagram -->
+                <div class="bg-white text-gray-800 p-8 rounded-2xl shadow-xl animate-fade-in-up" style="animation-delay: 0.2s;">
+                    <h3 class="font-title font-bold text-2xl mb-3" style="color: var(--dark);">Sua voz também transforma! 📸</h3>
+                    <p class="mb-4 leading-relaxed">
+                        Nós queremos ouvir a sua história. O seu depoimento inspira outras pessoas e fortalece a nossa corrente do bem. 
+                        <strong>Como participar:</strong>
+                    </p>
+                    <ol class="list-decimal list-inside space-y-2 mb-6 text-gray-700 font-medium">
+                        <li>Grave um vídeo curto ou tire uma foto com nossa equipe/mascote.</li>
+                        <li>Poste nos Stories ou no Feed do seu Instagram.</li>
+                        <li>Marque o nosso perfil <a href="https://www.instagram.com/institutofarahzinhos/" target="_blank" class="text-[var(--accent)] hover:underline">@institutofarahzinhos</a>.</li>
+                    </ol>
+                    <p class="text-sm text-gray-500 italic mb-6">Nós iremos repostar todos os registros na nossa página oficial!</p>
+                    
+                    <!-- Botões de Ação do Depoimento -->
+                    <div class="flex flex-col sm:flex-row gap-4 mt-4 pt-6 border-t border-gray-100">
+                        <button onclick="window.open('https://www.instagram.com/institutofarahzinhos/', '_blank')" class="flex-1 bg-[var(--dark)] text-white py-3 px-6 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-blue-900 transition-colors shadow-md hover-scale">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.469 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"></path></svg>
+                            Comentar no Instagram
+                        </button>
+                        <button onclick="alert('Link do catálogo copiado! Agora você pode colar no WhatsApp para encaminhar aos seus contatos.')" class="flex-1 border-2 border-[var(--dark)] text-[var(--dark)] py-3 px-6 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors shadow-md hover-scale">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+                            Encaminhar
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Grafismo inferior -->
+            <div class="mt-auto pt-10 border-t border-blue-800 relative z-0">
+                <img src="CRIAÇÃO DE IDENTIDADE INSTITUTO.png" alt="Mascote" class="w-32 h-auto opacity-50 ml-auto transform translate-y-4">
+            </div>
+        </div>
+        <div class="page-number light">04</div>
+    </div>
+
+    <!-- ==========================================
+         PÁGINA 5: CONTRA-CAPA / CONTATOS
+    =========================================== -->
+    <div id="page-contato" class="page border-red-top p-12 md:p-16 flex flex-col" style="background-color: #f8fafc; display: none;">
+        <header class="mb-12">
+            <h2 class="font-title font-black text-4xl uppercase" style="color: var(--dark);">Contato & Localização</h2>
+            <p class="text-gray-500 mt-2 text-lg">Faça parte dessa corrente do bem.</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 flex-1">
+            
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 flex items-start gap-4">
+                <img src="icon-horario.jpg" alt="Horários" class="w-12 h-12 object-contain mix-blend-multiply">
+                <div>
+                    <h3 class="font-title font-bold text-xl mb-2" style="color: var(--dark);">Horário de Atendimento</h3>
+                    <p class="text-gray-600">Segunda a Sexta-feira<br>08:00 às 18:00</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 flex items-start gap-4">
+                <img src="icon-localização.jpg" alt="Localização" class="w-12 h-12 object-contain mix-blend-multiply">
+                <div>
+                    <h3 class="font-title font-bold text-xl mb-2" style="color: var(--dark);">Sede Institucional</h3>
+                    <p class="text-gray-600">Belém e Região Metropolitana<br>Pará, Brasil</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-xl shadow-sm flex items-start gap-6 border border-gray-100 md:col-span-2">
+                <div class="bg-[var(--dark)] p-4 rounded-lg shrink-0">
+                    <img src="icon-site.jpg" alt="Site" class="w-8 h-8 filter invert brightness-0">
+                </div>
+                <div class="flex-1 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                        <h3 class="font-title font-bold text-xl mb-2" style="color: var(--dark);">Nossos Canais</h3>
+                        <p class="text-[var(--primary)] font-semibold text-lg hover:underline"><a href="https://instituto-farahzinho.com.br/" target="_blank">instituto-farahzinho.com.br</a></p>
+                        <p class="text-gray-600">Instagram: <a href="https://www.instagram.com/institutofarahzinhos/" target="_blank" class="hover:text-[var(--accent)]">@institutofarahzinhos</a></p>
+                    </div>
+                    <button class="bg-[var(--accent)] text-white px-8 py-4 rounded-lg font-bold uppercase tracking-wider hover:bg-red-700 transition-colors shadow-lg hover-scale">
+                        Fale Conosco
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+
+        <footer class="mt-auto text-center border-t border-gray-200 pt-8 text-gray-400 text-sm">
+            Catálogo Oficial &copy; 2026 Instituto Farahzinhos.
+        </footer>
+        <div class="page-number">05</div>
+    </div>
+
+    <script>
+        // Script para gerenciar a navegação sem scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const linksNavegacao = document.querySelectorAll('a[href^="#page-"]');
+            const todasPaginas = document.querySelectorAll('.page');
+            const btnVoltar = document.getElementById('btn-voltar');
+
+            linksNavegacao.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault(); // Impede o comportamento padrão de descer a página
+                    
+                    const paginaAlvoId = link.getAttribute('href').substring(1);
+                    
+                    // Esconde todas as páginas
+                    todasPaginas.forEach(pagina => {
+                        pagina.style.display = 'none';
+                    });
+                    
+                    // Mostra apenas a página clicada
+                    const paginaAlvo = document.getElementById(paginaAlvoId);
+                    if (paginaAlvo) {
+                        paginaAlvo.style.display = 'flex';
+                        window.scrollTo(0, 0); // Joga a visualização pro topo da página
+                        
+                        // Mostra o botão de voltar, exceto se estiver na capa
+                        if (paginaAlvoId !== 'page-capa') {
+                            btnVoltar.style.display = 'flex';
+                        }
+                    }
+                });
+            });
+        });
+
+        // Função para voltar para a capa
+        function voltarParaCapa() {
+            const todasPaginas = document.querySelectorAll('.page');
+            
+            // Esconde todas
+            todasPaginas.forEach(pagina => {
+                pagina.style.display = 'none';
+            });
+            
+            // Mostra a capa
+            document.getElementById('page-capa').style.display = 'flex';
+            
+            // Esconde o botão de voltar
+            document.getElementById('btn-voltar').style.display = 'none';
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
